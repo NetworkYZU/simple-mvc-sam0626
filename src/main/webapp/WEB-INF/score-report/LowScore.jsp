@@ -1,9 +1,9 @@
 <%-- 
-    Document   : UnknownStudent
-    Created on : Sep 24, 2018, 7:35:46 AM
-    Author     : lendle
+    Document   : LowScore
+    Created on : 2019/11/13, 上午 12:04:21
+    Author     : User
 --%>
-
+<%@page import="Student.Student"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -12,6 +12,10 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <%
+            Student student=(Student)request.getAttribute("student");
+        %>
+        <h1>Hello, <%=student.getName()%></h1>
+        <%=student.getScore()%>分,加油點!
     </body>
 </html>

@@ -6,6 +6,8 @@
 package lendle.courses.network.simplemvc;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author lendle
+ * @author User
  */
-@WebServlet(name = "ShowScore", urlPatterns = {"/score"})
+@WebServlet(name = "ShowScore", urlPatterns = {"/ShowScore"})
 public class ShowScore extends HttpServlet {
 
     /**
@@ -30,11 +32,25 @@ public class ShowScore extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id=request.getParameter("id");
+        String id=request.getParameter("id");        
+        Student student = Student.getStudent(id);
         String address=null;
+        if(student==null){
+            address="/WEB-INF/score-report/UnknownScore.jsp";
+        }else if(student.getScore()==50){
+            address="/WEB-INF/score-report/LowScore.jsp";
+            request.setAttribute("student", student);
+        }else if(student.getScore()==80){
+            address="/WEB-INF/score-report/HighScore.jsp";
+            request.setAttribute("student", student);
+        }else{
+            address="/WEB-INF/score-report/NormalScore.jsp";
+            request.setAttribute("student", student);
+        }
         //按照分數選擇頁面
         request.getRequestDispatcher(address).forward(request, response);
-    }
+        }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
