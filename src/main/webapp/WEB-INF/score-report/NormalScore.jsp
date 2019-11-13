@@ -3,7 +3,7 @@
     Created on : 2019/11/13, 上午 12:04:36
     Author     : User
 --%>
-<%@page import="Student.Student"%>
+<%@page import="lendle.courses.network.simplemvc.Student"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
